@@ -30,7 +30,7 @@
                                         lineWidth:3 });
 
         if (window["WebSocket"]) {
-	  var conn = new WebSocket("ws://127.0.0.1:8080/ProcessCount");
+	  var conn = new WebSocket("ws://" + window.location.host + "/ProcessCount");
 
 	  conn.onmessage = function(evt) {
               var count = parseFloat (evt.data);
