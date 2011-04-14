@@ -122,7 +122,7 @@ namespace Manos.Ws {
 			if (version == 76)
 				head_prepend = "Sec-";
 			hs.AppendFormat ("{0}WebSocket-Origin: {1}\r\n", head_prepend, request.Headers ["Origin"]);
-			hs.AppendFormat ("{0}WebSocket-Location: ws://{1}{2}\r\n", head_prepend, request.Headers ["Host"], url);
+			hs.AppendFormat ("{0}WebSocket-Location: {3}://{1}{2}\r\n", head_prepend, request.Headers ["Host"], url, request.Headers ["Origin"].StartsWith("https") ? "wss" : "ws");
 			hs.Append ("\r\n");
 
 			socket.Write (Encoding.ASCII.GetBytes (hs.ToString ()), null);
